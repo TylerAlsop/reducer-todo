@@ -9,18 +9,27 @@ import "./components/Todo.css"
 
 
 
-function App() {
-  const [todoTasks, setTodoTasks] = useState();
+const App = () => {
+  const [todoItems, setTodoItems] = useState();
 
-  const [state, dispatch] = todoListReducer()
+  const [state, dispatch] = useReducer(todoListReducer, initialState);
 
+  console.log("State in App.js", state);
 
+  const handleChanges = e => {
+    setTodoItems(e.target.value);
+  };
 
+  const changeItemName = e => {
+    dispatch({ type: "CHANGE_ITEM_NAME" });
+  };
+
+  
   return (
     <div className="app">
       <div className="header">
         <h2 className="welcome-message">Welcome to your Todo App!</h2>
-        <ItemForm />
+        <ItemForm handleChanges={handleChanges} changeItemName={changeItemName}/>
       </div>
       <div className="todo-list">
         <TodoList />

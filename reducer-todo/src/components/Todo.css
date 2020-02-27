@@ -8,7 +8,7 @@
 
 
 
-/* @import url('https://fonts.googleapis.com/css?family=Roboto');
+ @import url('https://fonts.googleapis.com/css?family=Roboto');
 html,
 body {
   width: 100%;
@@ -42,7 +42,7 @@ span {
   margin: 0 auto;
 }
 
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -103,4 +103,4 @@ input::placeholder {
 
 .clear-btn {
   margin-top: 16px;
-} */
+}  */
