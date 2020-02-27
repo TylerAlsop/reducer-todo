@@ -1,87 +1,75 @@
-import React from 'react';
+import React, { useState, useReducer} from 'react';
 
 import TodoList from './components/TodoList';
 import ItemForm from './components/ItemForm';
 
+import { initialState, todoListReducer } from './reducers/reducerIndex';
+
 import "./components/Todo.css"
 
-const todoTasks = [];
+
+
+function App() {
+  const [todoTasks, setTodoTasks] = useState();
+
+  const [state, dispatch] = todoListReducer()
 
 
 
-class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
-
-  constructor() {
-    super();
-    this.state = {
-      todoTasks
-    };
-  }
-
-  addTask = (e, task) => {
-    e.preventDefault();
-
-    const newTask = {
-      taskName: task,
-      id: Date.now(),
-      completed: false
-    }
-
-    this.setState({
-      todoTasks: [...this.state.todoTasks, newTask]
-    });
-  };
-
-  toggleTaskCompletion = taskId => {
-    // console.log("toggleTaskCompletion", taskId)
-
-    this.setState({
-      todoTasks: this.state.todoTasks.map(task => {
-        // console.log(task);
-
-        if (taskId === task.id) {
-          return {
-            ...task,
-            completed: !todoTasks.completed
-          };
-        }
-
-        return task;
-      })
-    });
-  };
-
-  clearCompleted = e => {
-    e.preventDefault();
-    // console.log(this.state.todoTasks);
-    this.setState({
-      todoTasks: this.state.todoTasks.filter(task => task.completed === false)
-    });
-    // console.log(this.state.todoTasks);
-  }
-
-  render() {
-    // console.log("Congrats It's Rendering!");
-
-    return (
-      <div className="app">
-        <div className="header">
-          <h2 className="welcome-message">Welcome to your Todo App!</h2>
-          <ItemForm addTask={this.addTask} />
-        </div>
-        <div className="todo-list">
-          <TodoList 
-            todoTasks={this.state.todoTasks}
-            toggleTaskCompletion={this.toggleTaskCompletion}
-            clearCompleted={this.clearCompleted}
-          />
-        </div>
+  return (
+    <div className="app">
+      <div className="header">
+        <h2 className="welcome-message">Welcome to your Todo App!</h2>
+        <ItemForm />
       </div>
-    );
-  }
+      <div className="todo-list">
+        <TodoList />
+      </div>
+    </div>
+  );
 }
 
 export default App;
+
+
+  // const addTask = (e, task) => {
+  //   e.preventDefault();
+
+  //   const newTask = {
+  //     item: task,
+  //     completed: false,
+  //     id: Date.now(),
+  //   }
+
+  //   setTodoTasks({
+  //     todoTasks: [...todoTasks, newTask]
+  //   });
+  // };
+
+  // const toggleTaskCompletion = taskId => {
+  //   // console.log("toggleTaskCompletion", taskId)
+
+  //   setTodoTasks({
+  //     todoTasks: todoTasks.map(task => {
+  //       // console.log(task);
+
+  //       if (taskId === task.id) {
+  //         return {
+  //           ...task,
+  //           completed: !todoTasks.completed
+  //         };
+  //       }
+
+  //       return task;
+  //     })
+  //   });
+  // };
+
+  // const clearCompleted = e => {
+  //   e.preventDefault();
+  //   // console.log(this.state.todoTasks);
+  //   setTodoTasks({
+  //     todoTasks: todoTasks.filter(task => task.completed === false)
+  //   });
+  //   // console.log(this.state.todoTasks);
+  // }

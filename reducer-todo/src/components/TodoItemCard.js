@@ -5,10 +5,9 @@ const TodoItemCard = props => {
 
     return (
         <div 
-            className ={`task${props.task.completed ? " completed" : ""}`}
-            onClick={() => props.toggleTaskCompletion(props.task.id)}
+            className ={`task${props.item.completed ? " completed" : ""}`}
         >
-            <p>{props.task.taskName}</p>
+            <p></p>
 
         </div>
     );

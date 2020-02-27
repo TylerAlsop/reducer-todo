@@ -1,32 +1,23 @@
 import React from 'react';
 
-class ItemForm extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            task: ""
-        };
-    };
+const ItemForm = () => {
 
-    changHandler = e => {
-        this.setState({ [e.target.name]: e.target.value });
+    const changeHandler = e => {
+        setState({ [e.target.name]: e.target.value });
         // console.log("This is the state from the Form", this.state)
     };
 
-    submitTask = e => {
+    const submitTask = e => {
         e.preventDefault();
-        this.props.addTask(e, this.state.task);
+        props.addTask(e, state.item);
     };
 
-    render() {
-        // console.log("Rendering Form", this.state.task);
-        return (
-            <form onSubmit={this.submitTask}>
-                <input type="text" name="task" onChange={this.changHandler} />
-                <button>Add Task</button>
-            </form>
-        );
-    };
-}
+    return (
+        <form onSubmit={this.submitTask}>
+            <input type="text" name="task" />
+            <button>Add Task</button>
+        </form>
+    );
+};
 
 export default ItemForm
