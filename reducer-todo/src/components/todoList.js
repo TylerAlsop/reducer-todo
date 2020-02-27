@@ -6,9 +6,9 @@ const TodoList = props => {
 
     return (
         <div className="todo-list">
-            {/* {props.todoTasks.map(item => (
-                <TodoItemCard  />
-            ))} */}
+            {props.state.map(item => (
+                <TodoItemCard key={item.id} item={item} state={props.state} todoItems={props.todoItems}/>
+            ))}
 
             <button className="clear-completed-button">
                 Clear Completed Tasks

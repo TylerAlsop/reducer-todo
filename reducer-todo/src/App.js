@@ -21,7 +21,7 @@ const App = () => {
   };
 
   const changeItemName = e => {
-    dispatch({ type: "CHANGE_ITEM_NAME" });
+    dispatch({ type: "CHANGE_ITEM_NAME", payload: todoItems });
   };
 
   
@@ -29,10 +29,10 @@ const App = () => {
     <div className="app">
       <div className="header">
         <h2 className="welcome-message">Welcome to your Todo App!</h2>
-        <ItemForm handleChanges={handleChanges} changeItemName={changeItemName}/>
+        <ItemForm handleChanges={handleChanges} changeItemName={changeItemName} todoItems={todoItems}/>
       </div>
       <div className="todo-list">
-        <TodoList />
+        <TodoList state={state} todoItems={todoItems} />
       </div>
     </div>
   );

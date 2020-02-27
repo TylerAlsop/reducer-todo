@@ -1,8 +1,8 @@
-export const initialState = {
-  item: 'Learn about reducers',
+export const initialState = [{
+  itemName: 'Learn about reducers',
   completed: false,
   id: Date.now()
-};
+}];
   
 export const todoListReducer = (state, action) => {
   switch (action.type) {
@@ -13,6 +13,10 @@ export const todoListReducer = (state, action) => {
   }
 };
   
+
+
+
+
 
 // const addTask = (e, task) => {
   //   e.preventDefault();

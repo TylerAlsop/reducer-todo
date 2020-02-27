@@ -2,7 +2,22 @@ import React from 'react';
 
 const ItemForm = (props) => {
 
-    // const changeHandler = e => {
+  console.log("This is the state from the Form", props.state)
+
+    return (
+        <form onSubmit={props.changeItemName}>
+            <input type="text" name="item" value={props.todoItems} onChange={props.handleChanges}/>
+            <button>Add Task</button>
+        </form>
+    );
+};
+
+export default ItemForm
+
+
+
+
+  // const changeHandler = e => {
     //     setState({ [e.target.name]: e.target.value });
     //     // console.log("This is the state from the Form", this.state)
     // };
@@ -11,13 +26,3 @@ const ItemForm = (props) => {
     //     e.preventDefault();
     //     props.addTask(e, state.item);
     // };
-
-    return (
-        <form onSubmit={props.changeItemName}>
-            <input type="text" name="task" onChange={props.handleChanges}/>
-            <button>Add Task</button>
-        </form>
-    );
-};
-
-export default ItemForm

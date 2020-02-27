@@ -5,9 +5,9 @@ const TodoItemCard = props => {
 
     return (
         <div 
-            className ={`task${props.item.completed ? " completed" : ""}`}
+            className ={`item${props.item.completed ? " completed" : ""}`}
         >
-            <p></p>
+            <p>{props.item.itemName}</p>
 
         </div>
     );
