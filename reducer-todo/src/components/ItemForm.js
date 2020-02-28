@@ -2,10 +2,10 @@ import React from 'react';
 
 const ItemForm = (props) => {
 
-  console.log("This is the state from the Form", props.state)
+  console.log("This is the state from the Form", props.todoItems)
 
     return (
-        <form onSubmit={props.changeItemName}>
+        <form onSubmit={props.addItem}>
             <input type="text" name="item" value={props.todoItems} onChange={props.handleChanges}/>
             <button>Add Task</button>
         </form>

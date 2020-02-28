@@ -1,13 +1,24 @@
-export const initialState = [{
-  itemName: 'Learn about reducers',
-  completed: false,
-  id: Date.now()
-}];
+export const initialState = {
+  todoItems: [
+    {
+      itemName: 'Learn about reducers',
+      completed: false,
+      id: Date.now()
+    }
+  ]
+
+};
+
   
-export const todoListReducer = (state, action) => {
+export const todoListReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CHANGE_ITEM_NAME":
-      return { ...state, item: action.payload };
+    case "ADD_ITEM":
+      const newItem = {
+        itemName: action.payload,
+        completed: false,
+        id: Date.now()
+      }
+      return { ...state, todoItems: [...state.todoItems] newItem  };
     default:
       return state;
   }

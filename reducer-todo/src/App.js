@@ -24,12 +24,23 @@ const App = () => {
     dispatch({ type: "CHANGE_ITEM_NAME", payload: todoItems });
   };
 
+  const addItem = (e, item) => {
+    e.preventDefault();
+
+    const newItem = {
+      itemName: item,
+      completed: false,
+      id: Date.now()
+    }
+    dispatch({ type: "ADD_ITEM", payload: newItem })
+  }
+
   
   return (
     <div className="app">
       <div className="header">
         <h2 className="welcome-message">Welcome to your Todo App!</h2>
-        <ItemForm handleChanges={handleChanges} changeItemName={changeItemName} todoItems={todoItems}/>
+        <ItemForm handleChanges={handleChanges} changeItemName={changeItemName} todoItems={todoItems} addItem={addItem}/>
       </div>
       <div className="todo-list">
         <TodoList state={state} todoItems={todoItems} />
