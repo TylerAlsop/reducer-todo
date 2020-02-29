@@ -10,40 +10,54 @@ import "./components/Todo.css"
 
 
 const App = () => {
-  const [todoItems, setTodoItems] = useState();
 
   const [state, dispatch] = useReducer(todoListReducer, initialState);
 
+  // const [todoItems, setTodoItems] = useState(state.todoItems);
+
+
   console.log("State in App.js", state);
 
-  const handleChanges = e => {
-    setTodoItems(e.target.value);
-  };
 
-  const changeItemName = e => {
-    dispatch({ type: "CHANGE_ITEM_NAME", payload: todoItems });
-  };
-
-  const addItem = (e, item) => {
-    e.preventDefault();
+  const addItem = (name) => {
 
     const newItem = {
-      itemName: item,
+      itemName: name,
       completed: false,
       id: Date.now()
     }
     dispatch({ type: "ADD_ITEM", payload: newItem })
   }
 
+  const toggleCompleted = itemId => {
+    const completedTodoItems = state.todoItems.map(item => {
+      console.log("item in toggleCompleted", item);
+      if (itemId === item.id) {
+        return {
+          ...item,
+          completed: !item.completed
+        };
+      }
+      return item
+    })
+    console.log("TodoItems in toggleCompleted", state.todoItems)
+    dispatch({type: "TOGGLE_COMPLETED", payload: completedTodoItems})
+  };
+
+ 
+
+  console.log("state.todoItems in App.js", state.todoItems)
   
   return (
     <div className="app">
       <div className="header">
         <h2 className="welcome-message">Welcome to your Todo App!</h2>
-        <ItemForm handleChanges={handleChanges} changeItemName={changeItemName} todoItems={todoItems} addItem={addItem}/>
+        <ItemForm addItem={addItem}/>
       </div>
       <div className="todo-list">
-        <TodoList state={state} todoItems={todoItems} />
+        <TodoList 
+          todoItems={state.todoItems} 
+          toggleCompleted={toggleCompleted} />
       </div>
     </div>
   );

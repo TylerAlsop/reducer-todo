@@ -13,19 +13,20 @@ export const initialState = {
 export const todoListReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_ITEM":
-      const newItem = {
-        itemName: action.payload,
-        completed: false,
-        id: Date.now()
-      }
-      return { ...state, todoItems: [...state.todoItems] newItem  };
+      // const newItem = {
+      //   itemName: action.payload,
+      //   completed: false,
+      //   id: Date.now()
+      // }
+      return { ...state, todoItems: [...state.todoItems, action.payload] };
+    case "TOGGLE_COMPLETED":
+      console.log("Action.payload in reducer", action.payload )
+      return { ...state, todoItems: action.payload  }
+    
     default:
       return state;
   }
 };
-  
-
-
 
 
 
