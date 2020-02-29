@@ -23,6 +23,9 @@ export const todoListReducer = (state = initialState, action) => {
       console.log("Action.payload in reducer", action.payload )
       return { ...state, todoItems: action.payload  }
     
+    case "CLEAR_COMPLETED":
+      return { ...state, todoItems: action.payload  }
+      
     default:
       return state;
   }

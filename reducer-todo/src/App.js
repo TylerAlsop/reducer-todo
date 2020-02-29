@@ -44,7 +44,15 @@ const App = () => {
     dispatch({type: "TOGGLE_COMPLETED", payload: completedTodoItems})
   };
 
- 
+  const clearCompleted = () => {
+    const clearedCompletedItems = state.todoItems.filter(
+      item => item.completed === false
+    );
+
+    console.log("TodoItems in clearCompleted", state.todoItems)
+
+    dispatch({type: "CLEAR_COMPLETED", payload: clearedCompletedItems})
+  };
 
   console.log("state.todoItems in App.js", state.todoItems)
   
@@ -57,7 +65,9 @@ const App = () => {
       <div className="todo-list">
         <TodoList 
           todoItems={state.todoItems} 
-          toggleCompleted={toggleCompleted} />
+          toggleCompleted={toggleCompleted}
+          clearCompleted={clearCompleted} 
+        />
       </div>
     </div>
   );
